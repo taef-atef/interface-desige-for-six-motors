@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css"> 
+<meta charset="utf-8">
+<title>HOME</title>
+<style>
+*{
+padding: 0;
+	margin: 0;
+}
+	
+#o1{
+	background-color:lightgray;
+	width:100%;
+	height:100px;
+	
+}
+#o2{
+background-color:lightblue;
+	width:100%;
+	height:500px;}
+	
+#o3{
+background-color:lightgray;
+	width:100%;
+	height:100px;
+	clear:both;
+	}	
+.slider-ui .min,
+.slider-ui .max {
+	width:600px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+  place-items:center;
+ 
+  position:absolute;
+  font-size:18px;
+  font-weight:600;
+  color: black;
+}
+.container{
+min-height:30px;
+	width:600px;
+
+align-items:center;
+justify-content:center;
+text-align:center;
+  place-items:center;
+  font-weight:600;
+ 
+}
+.slider-ui .min {
+	left: -70px;
+}
+.slider-ui .max {
+	right: 587px;
+}
+.slider-ui .value {
+
+width:590px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+  place-items:center;
+  
+ }
+p{
+
+width:350px;
+
+}
+#col{
+min-height:9px;
+width:1000px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+#co{
+min-height:30px;
+width:1000px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+</style>
+</head>
+<body>
+<div id="o1">
+
+
+</div>
+
+<div id="o2">
+<form action="index.php" method="POST" >
+<div class="container">
+
+	<div class="slider-ui color1"> </br>
+	<div class="bar">
+	<p> محرك1 </p>  
+			<span class="min"></span>
+			<span class="max"></span>
+		</div>
+		 
+		<div class="track">
+			<div class="value" ></div>
+		</div>
+		 
+		<input type="range" min="0" max="180" step="1" name="s1"> <br>
+		
+	</div>
+
+	<div class="slider-ui color2"> </br>
+	<div class="bar">
+	<p> محرك2 </p>
+			<span class="min"></span>
+			<span class="max"></span>
+		</div>
+		<div class="track">
+			<div class="value" input="value" ></div>
+		</div>
+		<input type="range" min="0" max="180" step="1" name="s2"><br>
+		
+	</div>
+
+	<div class="slider-ui color3"> </br>
+	<div class="bar">
+	<p> محرك3 </p>
+			<span class="min"></span>
+			<span class="max"></span>
+		</div>
+		<div class="track">
+			<div class="value" name="s3"></div>
+		</div>
+		<input type="range" min="0" max="180" step="1" name="s3"><br>
+		
+	</div>
+	<div class="slider-ui color4"> </br>
+	<div class="bar">
+	<p> محرك4 </p>
+			<span class="min"></span>
+			<span class="max"></span>
+		</div>
+		<div class="track">
+			<div class="value" name="s4"></div>
+		</div>
+		<input type="range" min="0" max="180" step="1" name="s4"><br>
+		
+	</div>
+	<div class="slider-ui color5"> </br>
+	<div class="bar">
+	<p> محرك5 </p>
+			<span class="min"></span>
+			<span class="max"></span>
+		</div>
+		<div class="track">
+			<div class="value" name="s5"></div>
+		</div>
+		<input type="range" min="0" max="180" step="1" name="s5"><br>
+		
+	</div>
+	<div class="slider-ui color6"> </br>
+	<div class="bar">
+	<p> محرك6 </p>
+			<span class="min"></span>
+			<span class="max"></span>
+		</div>
+		<div class="track">
+			<div class="value" name="s6"></div>
+		</div>
+		<input type="range" min="0" max="180" step="1" name="s6"><br>
+		
+	</div>
+</div>
+
+<div id="col"  >
+<input type="submit" value = "Save"  name = save   ></button>
+</div>
+
+<div id="co"  >
+<input type="submit" value = "ON" name = on ></button>
+
+</div>
+</form>
+</div>
+<div id="o3">
+</div>
+<script>
+const sliders = document.querySelectorAll(".slider-ui");
+
+sliders.forEach(slider => {
+	let input = slider.querySelector("input[type=range]");
+	let min = input.getAttribute("min");
+	let max = input.getAttribute("max");
+	let valueElem = slider.querySelector(".value");
+
+	slider.querySelector(".min").innerText = min;
+	slider.querySelector(".max").innerText = max;
+
+	function setValueElem() {
+		valueElem.innerText = input.value;
+		let percent = (input.value - min) / (max - min) * 100;
+		valueElem.style.left = percent + "%";
+	}
+	setValueElem();
+
+	input.addEventListener("input", setValueElem);
+	input.addEventListener("mousedown", () => {
+		valueElem.classList.add("up");
+	});
+	input.addEventListener("mouseup", () => {
+		valueElem.classList.remove("up");
+	});
+});
+
+</script>
+
+</body>
+</html>
